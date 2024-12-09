@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Create a custom VPC with custom CIDR block and enable dns-hostname, dns-support
+Resources:
+  customVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/24
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags:
+        - Key: name
+          Value: customVPC
+
+Outputs:
+  outputcustomVPC:
+    Description: A reference to the created VPC
+    Value: !Ref customVPC
