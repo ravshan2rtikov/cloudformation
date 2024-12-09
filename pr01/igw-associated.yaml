@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: The script creates a internet gateway and attach it to the customVPC
+
+Parameters:
+  customVPC:
+    Description: VPC id provided
+    Type: AWS::EC2::VPC::Id
+    Default: vpc-0d2771311d5398846
+
+Resources:
+  customIGW:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+      - Key: name
+        Value: Internet Gateway
+  AttachGateway:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref customVPC
+      InternetGatewayId: !Ref customIGW
+
+Outputs:
+  outputcustomIGW:
+    Description: Information about the Value
+    Value: !Ref customIGW
+  outputattachgateway:
+    Description: The value info
+    Value: AttachGateway
